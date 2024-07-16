@@ -20,7 +20,7 @@ with open(input_file_path, 'r') as f:
 
 # remove some nonsense that slipped through
 data = data.replace("See Tenacious D LiveGet tickets as low as $73You might also like","")
-
+data = data.replace("Embed", "")
 encode = lambda s: enc.encode(s, allowed_special={"<|endoftext|>"})
 decode = lambda l: enc.decode(l)
 
