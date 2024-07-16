@@ -16,15 +16,17 @@ with open(input_file_path, 'r') as f:
     data = f.read()
 print(f"length of dataset in characters: {len(data):,}")
 
-# get all the unique characters that occur in this text
-chars = sorted(list(set(data)))
-vocab_size = len(chars)
-print("all the unique characters:", ''.join(chars))
+# get all the unique words that occur in this text
+data = data.split()
+words = set(data)
+# chars = sorted(list(set(data)))
+vocab_size = len(words)
+# print("all the unique words:", ''.join(chars))
 print(f"vocab size: {vocab_size:,}")
 
-# create a mapping from characters to integers
-stoi = { ch:i for i,ch in enumerate(chars) }
-itos = { i:ch for i,ch in enumerate(chars) }
+# create a mapping from words to integers
+stoi = { ch:i for i,ch in enumerate(words) }
+itos = { i:ch for i,ch in enumerate(words) }
 def encode(s):
     return [stoi[c] for c in s] # encoder: take a string, output a list of integers
 def decode(l):
