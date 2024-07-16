@@ -18,6 +18,9 @@ input_file_path = os.path.join(os.path.dirname(__file__), 'lyrics.txt')
 with open(input_file_path, 'r') as f:
     data = f.read()
 
+# remove some nonsense that slipped through
+data = data.replace("See Tenacious D LiveGet tickets as low as $73You might also like","")
+
 encode = lambda s: enc.encode(s, allowed_special={"<|endoftext|>"})
 decode = lambda l: enc.decode(l)
 
