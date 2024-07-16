@@ -17,23 +17,6 @@ input_file_path = os.path.join(os.path.dirname(__file__), 'lyrics.txt')
 
 with open(input_file_path, 'r') as f:
     data = f.read()
-print(f"length of dataset in characters: {len(data):,}")
-
-# # get all the unique words that occur in this text
-# data = data.split()
-# words = set(data)
-# # chars = sorted(list(set(data)))
-# vocab_size = len(words)
-# # print("all the unique words:", ''.join(chars))
-# print(f"vocab size: {vocab_size:,}")
-
-# # create a mapping from words to integers
-# stoi = { ch:i for i,ch in enumerate(words) }
-# itos = { i:ch for i,ch in enumerate(words) }
-# def encode(s):
-#     return [stoi[c] for c in s] # encoder: take a string, output a list of integers
-# def decode(l):
-#     return ''.join([itos[i] for i in l]) # decoder: take a list of integers, output a string
 
 encode = lambda s: enc.encode(s, allowed_special={"<|endoftext|>"})
 decode = lambda l: enc.decode(l)
@@ -54,12 +37,3 @@ train_ids = np.array(train_ids, dtype=np.uint16)
 val_ids = np.array(val_ids, dtype=np.uint16)
 train_ids.tofile(os.path.join(os.path.dirname(__file__), 'train.bin'))
 val_ids.tofile(os.path.join(os.path.dirname(__file__), 'val.bin'))
-
-# # save the meta information as well, to help us encode/decode later
-# meta = {
-#     'vocab_size': vocab_size,
-#     'itos': itos,
-#     'stoi': stoi,
-# }
-# with open(os.path.join(os.path.dirname(__file__), 'meta.pkl'), 'wb') as f:
-#     pickle.dump(meta, f)
